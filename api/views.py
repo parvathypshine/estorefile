@@ -53,5 +53,24 @@ class Fact(APIView):
         for i in range(1,n+1):
             res=res*i
         return Response(data=res)
+
 class WordCountView(APIView):
     def post(self,request,*args,**kwargs):
+        txt=request.data.get("text")
+        words=(txt.split(" "))
+        wc={}
+        for w in words:
+            if w in wc:
+                wc[w]+=1
+            else:
+                wc[w]=1
+        return Response(data=wc)
+
+class ProductsView(APIView):
+    def post(self, request, *args, **kwargs):
+        bname=request.data.get('name')
+        bauthor = request.data.get('author')
+        bprice= request.data.get('price')
+        bpublisher= request.data.get('publisher')
+        Books.object.create(name=bname,author=bauthor,price=bprice,publisher=bpublisher)
+        return Response(data=created)

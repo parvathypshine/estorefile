@@ -1,0 +1,59 @@
+from django.db import models
+class person:
+def __init__(self,name):
+ self.name=name
+def _-str__(sel):
+ return self.name
+p=Person('paru')
+p1=Person('pp")
+print(p)
+
+
+
+
+
+
+
+class Books(models.Model):
+    name=models.CharField(max_length=200)
+    author=models.CharField(max_length=120)
+    price=models.PositiveIntegerField()
+    publisher=models.CharField(max_length=200)
+    qty=models.PositiveIntegerField(default=1)
+
+orm query to create obj
+=======================
+from api.models import Books
+modelname.objects.create(fiel1=value1,file1=value2..)
+Books.objects.create(name='adc',price=250)
+
+fetching specific resources
+==========================
+ Modelname.objects.get(id=2)
+ data=Books.objects.grt(id=2)
+ data
+ data.name
+ data.price
+
+ price<400
+ ========
+  qs=Books.objects.filter(price__lte=400)
+
+data=Books.objects.all().exclude(price=500)
+data=Books.objects.all().exclude(price__gte=500,price__lte=600)
+
+sort
+===
+
+BOoks.objest.order_by('price')
+Books.objest.order_by('-price')
+
+
+update
+=====
+Books.objects.filter(id=2).update(price=550)
+
+delete
+======
+
+data=Books.objects.filter(id=4).delete()
